@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Check - SSDLC Automation Tool</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🏥 Health Check</h1>
+            <p>SSDLC Automation Tool Status</p>
+        </div>
+
+        <div class="health-status" id="health-status">
+            <div class="loading">
+                <div class="loading-spinner"></div>
+                <p>Checking system status...</p>
+            </div>
+        </div>
+
+        <div class="actions">
+            <a href="index.html" class="btn btn-primary">← Back to Dashboard</a>
+        </div>
+    </div>
+
+    <script>
+        async function checkHealth() {
+            const statusEl = document.getElementById('health-status');
+            
+            try {
+                const response = await fetch('/.netlify/functions/health');
+                const data = await response.json();
+                
+                if (response.ok) {
+                    statusEl.innerHTML = `
+                        <div class="health-success">
+                            <h2>✅ System Healthy</h2>
+                            <p><strong>Status:</strong> ${data.status}</p>
+                            <p><strong>Message:</strong> ${data.message}</p>
+                            <p><strong>Timestamp:</strong> ${new Date(data.timestamp).toLocaleString()}</p>
+                        </div>
+                    `;
+                } else {
+                    throw new Error('Health check failed');
+                }
+            } catch (error) {
+                statusEl.innerHTML = `
+                    <div class="health-error">
+                        <h2>❌ System Error</h2>
+                        <p><strong>Error:</strong> ${error.message}</p>
+                        <p>Please check the system logs or try again later.</p>
+                    </div>
+                `;
+            }
+        }
+
+        // Check health on page load
+        checkHealth();
+    </script>
+
+    <style>
+        .health-status {
+            background: white;
+            border-radius: 8px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .health-success {
+            color: #28a745;
+            text-align: center;
+        }
+
+        .health-error {
+            color: #dc3545;
+            text-align: center;
+        }
+
+        .loading {
+            text-align: center;
+            color: #6c757d;
+        }
+
+        .loading-spinner {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #007bff;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</body>
+</html>

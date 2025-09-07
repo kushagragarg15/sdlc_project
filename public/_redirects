@@ -1,0 +1,10 @@
+# Netlify redirects for SSDLC Automation Tool
+
+# API routes to Netlify Functions
+/api/projects  /.netlify/functions/projects  200
+/api/projects/*  /.netlify/functions/projects/*  200
+/api/health  /.netlify/functions/health  200
+/api/reports/*  /.netlify/functions/reports/*  200
+
+# SPA fallback - serve index.html for all other routes
+/*  /index.html  200

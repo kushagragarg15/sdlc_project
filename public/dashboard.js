@@ -35,7 +35,7 @@ class Dashboard {
             this.hideElement(noProjectsEl);
 
             // Fetch projects from API
-            const response = await fetch('/api/projects');
+            const response = await fetch('/.netlify/functions/projects');
             
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
@@ -169,7 +169,7 @@ class Dashboard {
             submitButton.classList.add('loading');
 
             // Send request to create project
-            const response = await fetch('/api/projects', {
+            const response = await fetch('/.netlify/functions/projects', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

@@ -26,12 +26,23 @@ A lightweight web application designed to help development teams track and manag
 
 ## Installation
 
+### Local Development
+
 1. Clone or download the project files
 2. Navigate to the project directory
 3. Install dependencies:
    ```bash
    npm install
    ```
+
+### Netlify Deployment
+
+For cloud deployment on Netlify, see [NETLIFY_DEPLOYMENT.md](NETLIFY_DEPLOYMENT.md) for detailed instructions.
+
+**Quick Deploy to Netlify:**
+1. Fork this repository
+2. Connect to Netlify from GitHub
+3. Deploy with build command: `npm run build` and publish directory: `public`
 
 ## Usage
 

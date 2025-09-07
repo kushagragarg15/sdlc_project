@@ -36,7 +36,7 @@ class ReportsManager {
 
     async loadProjects() {
         try {
-            const response = await fetch('/api/projects');
+            const response = await fetch('/.netlify/functions/projects');
             if (!response.ok) {
                 throw new Error('Failed to fetch projects');
             }
@@ -92,7 +92,7 @@ class ReportsManager {
 
         try {
             // Fetch detailed project data including tasks
-            const response = await fetch(`/api/projects/${this.selectedProject.id}`);
+            const response = await fetch(`/.netlify/functions/projects/${this.selectedProject.id}`);
             if (!response.ok) {
                 throw new Error('Failed to fetch project details');
             }
@@ -295,7 +295,7 @@ class ReportsManager {
         downloadBtn.classList.add('loading');
 
         try {
-            const response = await fetch(`/api/projects/${this.selectedProject.id}/report`);
+            const response = await fetch(`/.netlify/functions/reports/${this.selectedProject.id}`);
             
             if (!response.ok) {
                 throw new Error('Failed to generate report');

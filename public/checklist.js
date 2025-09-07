@@ -95,7 +95,7 @@ class Checklist {
             this.hideElement(errorEl);
 
             // Fetch project data from API
-            const response = await fetch(`/api/projects/${this.projectId}`);
+            const response = await fetch(`/.netlify/functions/projects/${this.projectId}`);
             
             if (!response.ok) {
                 if (response.status === 404) {
@@ -266,17 +266,7 @@ class Checklist {
             <div class="task-evidence">
                 <label>Evidence Files:</label>
                 <div class="evidence-upload">
-                    <input type="file" 
-                           id="evidence-${task.id}" 
-                           class="evidence-input"
-                           data-task-id="${task.id}"
-                           multiple 
-                           accept=".pdf,.doc,.docx,.xls,.xlsx,.txt,.csv,.jpg,.jpeg,.png,.gif,.webp">
-                    <button type="button" 
-                            class="btn btn-secondary upload-btn" 
-                            data-task-id="${task.id}">
-                        Upload Evidence
-                    </button>
+                    <p class="evidence-note">📎 Evidence files can be attached locally or referenced in task notes</p>
                 </div>
                 <div class="evidence-list" id="evidence-list-${task.id}">
                     <!-- Evidence files will be listed here -->
@@ -284,10 +274,7 @@ class Checklist {
             </div>
         `;
 
-        // Render evidence files after creating the element
-        setTimeout(() => {
-            this.renderEvidenceList(task.id, task.evidenceFiles || []);
-        }, 0);
+        // Evidence files display removed for Netlify compatibility
 
         return taskDiv;
     }
@@ -305,7 +292,7 @@ class Checklist {
             }
 
             // Send update to server
-            const response = await fetch(`/api/projects/${this.projectId}/tasks/${taskId}`, {
+            const response = await fetch(`/.netlify/functions/projects/${this.projectId}/tasks/${taskId}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -362,7 +349,7 @@ class Checklist {
             }
 
             // Send update to server
-            const response = await fetch(`/api/projects/${this.projectId}/tasks/${taskId}`, {
+            const response = await fetch(`/.netlify/functions/projects/${this.projectId}/tasks/${taskId}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -470,63 +457,8 @@ class Checklist {
         phaseBadge.className = `phase-badge ${isPhaseCompleted ? 'completed' : 'in-progress'}`;
     }
 
-    async uploadEvidence(taskId) {
-        try {
-            const fileInput = document.getElementById(`evidence-${taskId}`);
-            const files = fileInput.files;
-            
-            if (!files || files.length === 0) {
-                this.showError('Please select files to upload');
-                return;
-            }
-            
-            // Validate file size (10MB per file)
-            const maxSize = 10 * 1024 * 1024;
-            for (let file of files) {
-                if (file.size > maxSize) {
-                    this.showError(`File "${file.name}" is too large. Maximum size is 10MB per file.`);
-                    return;
-                }
-            }
-            
-            // Create FormData for file upload
-            const formData = new FormData();
-            for (let file of files) {
-                formData.append('evidence', file);
-            }
-            
-            // Show uploading state
-            const uploadBtn = document.querySelector(`button[data-task-id="${taskId}"]`);
-            const originalText = uploadBtn.textContent;
-            uploadBtn.innerHTML = '<span class="loading-spinner"></span> Uploading...';
-            uploadBtn.disabled = true;
-            uploadBtn.classList.add('loading');
-            
-            // Upload files
-            const response = await fetch(`/api/projects/${this.projectId}/tasks/${taskId}/evidence`, {
-                method: 'POST',
-                body: formData
-            });
-            
-            if (!response.ok) {
-                const errorData = await response.json();
-                throw new Error(errorData.error || `HTTP error! status: ${response.status}`);
-            }
-            
-            const result = await response.json();
-            
-            // Update local task data
-            this.updateLocalTaskData(result.task);
-            
-            // Update evidence list display
-            this.renderEvidenceList(taskId, result.task.evidenceFiles);
-            
-            // Clear file input
-            fileInput.value = '';
-            
-            // Show success message
-            const fileCount = result.uploadedFiles.length;
-            this.showSuccess(`${fileCount} file${fileCount > 1 ? 's' : ''} uploaded successfully!`);
+    // Evidence upload functionality removed for Netlify compatibility
+    // Users can reference evidence files in task notes
             
         } catch (error) {
             console.error('Error uploading evidence:', error);
