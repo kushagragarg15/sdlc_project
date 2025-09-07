@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SSDLC Reports - Security Reports</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <div class="container">
+        <header class="main-header">
+            <div class="header-content">
+                <div class="header-title">
+                    <h1>SSDLC Security Reports</h1>
+                    <p class="subtitle">Generate comprehensive security compliance reports</p>
+                </div>
+                <nav class="main-nav">
+                    <a href="index.html" class="nav-link">
+                        <span class="nav-icon">🏠</span>
+                        Dashboard
+                    </a>
+                    <a href="reports.html" class="nav-link active">
+                        <span class="nav-icon">📊</span>
+                        Reports
+                    </a>
+                </nav>
+            </div>
+        </header>
+
+        <main id="main-content">
+            <div class="reports-section">
+                <h2>Generate Project Reports</h2>
+                <p>Select a project to generate a comprehensive security compliance report.</p>
+                
+                <div class="project-selector">
+                    <label for="projectSelect">Select Project:</label>
+                    <select id="projectSelect">
+                        <option value="">Loading projects...</option>
+                    </select>
+                    <button id="generateReportBtn" disabled>Generate Report</button>
+                </div>
+
+                <div id="reportPreview" class="report-preview" style="display: none;">
+                    <h3>Report Preview</h3>
+                    <div class="preview-content">
+                        <div class="project-info">
+                            <h4 id="previewProjectName">Project Name</h4>
+                            <p><strong>Overall Security Score:</strong> <span id="previewSecurityScore">0%</span></p>
+                            <p><strong>Status:</strong> <span id="previewStatus">In Progress</span></p>
+                        </div>
+
+                        <div class="phase-summary">
+                            <h4>Phase Completion Summary</h4>
+                            <div id="phaseSummaryList">
+                                <!-- Phase summaries will be populated here -->
+                            </div>
+                        </div>
+
+                        <div class="task-summary">
+                            <h4>Task Completion Summary</h4>
+                            <div id="taskSummaryList">
+                                <!-- Task summaries will be populated here -->
+                            </div>
+                        </div>
+
+                        <div class="report-actions">
+                            <button id="downloadReportBtn" class="primary-btn">Download PDF Report</button>
+                            <button id="refreshPreviewBtn" class="secondary-btn">Refresh Preview</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="loadingIndicator" class="loading" style="display: none;">
+                    <p>Generating report...</p>
+                </div>
+
+                <div id="errorMessage" class="error-message" style="display: none;">
+                    <!-- Error messages will be displayed here -->
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="reports.js"></script>
+</body>
+</html>

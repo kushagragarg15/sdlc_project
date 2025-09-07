@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Security Checklist - SSDLC Automation Tool</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <div class="container">
+        <header class="main-header">
+            <div class="header-content">
+                <div class="header-title">
+                    <h1>Security Task Checklist</h1>
+                    <p class="subtitle" id="project-subtitle">Loading project...</p>
+                </div>
+                <nav class="main-nav">
+                    <a href="index.html" class="nav-link">
+                        <span class="nav-icon">🏠</span>
+                        Dashboard
+                    </a>
+                    <a href="reports.html" class="nav-link">
+                        <span class="nav-icon">📊</span>
+                        Reports
+                    </a>
+                </nav>
+            </div>
+        </header>
+
+        <nav class="breadcrumb-nav">
+            <a href="index.html" class="breadcrumb-link">← Back to Dashboard</a>
+        </nav>
+
+        <main id="main-content" class="main-content">
+            <!-- Loading and Error States -->
+            <div id="loading" class="loading" style="display: none;">Loading project tasks...</div>
+            <div id="error-message" class="error-message" style="display: none;"></div>
+            <div id="success-message" class="success-message" style="display: none;"></div>
+
+            <!-- Project Overview -->
+            <section id="project-overview" class="project-overview" style="display: none;">
+                <div class="project-info">
+                    <h2 id="project-name">Project Name</h2>
+                    <div class="project-meta">
+                        <span id="project-created">Created: </span>
+                        <span id="project-status">Status: </span>
+                    </div>
+                </div>
+                <div class="project-progress">
+                    <div class="progress-bar">
+                        <div id="progress-fill" class="progress-fill"></div>
+                    </div>
+                    <span id="progress-text">0% Complete</span>
+                </div>
+            </section>
+
+            <!-- Phase Navigation -->
+            <section id="phase-navigation" class="phase-navigation" style="display: none;">
+                <h3>SDLC Phases</h3>
+                <div class="phase-tabs" role="tablist" aria-label="SDLC Phases">
+                    <button class="phase-tab" data-phase="planning" role="tab" aria-selected="false" tabindex="-1">Planning</button>
+                    <button class="phase-tab" data-phase="design" role="tab" aria-selected="false" tabindex="-1">Design</button>
+                    <button class="phase-tab" data-phase="implementation" role="tab" aria-selected="false" tabindex="-1">Implementation</button>
+                    <button class="phase-tab" data-phase="testing" role="tab" aria-selected="false" tabindex="-1">Testing</button>
+                    <button class="phase-tab" data-phase="deployment" role="tab" aria-selected="false" tabindex="-1">Deployment</button>
+                </div>
+            </section>
+
+            <!-- Tasks Section -->
+            <section id="tasks-section" class="tasks-section" style="display: none;">
+                <div class="phase-header">
+                    <h3 id="current-phase-title">Phase Tasks</h3>
+                    <div class="phase-status">
+                        <span id="phase-completion">0/0 tasks completed</span>
+                        <span id="phase-badge" class="phase-badge">In Progress</span>
+                    </div>
+                </div>
+                
+                <div id="tasks-list" class="tasks-list">
+                    <!-- Tasks will be loaded here dynamically -->
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="checklist.js"></script>
+</body>
+</html>

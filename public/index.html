@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SSDLC Automation Tool - Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <div class="container">
+        <header class="main-header">
+            <div class="header-content">
+                <div class="header-title">
+                    <h1>SSDLC Automation Tool</h1>
+                    <p class="subtitle">Secure Software Development Lifecycle Management</p>
+                </div>
+                <nav class="main-nav">
+                    <a href="index.html" class="nav-link active">
+                        <span class="nav-icon">🏠</span>
+                        Dashboard
+                    </a>
+                    <a href="reports.html" class="nav-link">
+                        <span class="nav-icon">📊</span>
+                        Reports
+                    </a>
+                </nav>
+            </div>
+        </header>
+
+        <main id="main-content" class="main-content">
+            <!-- New Project Section -->
+            <section class="new-project-section">
+                <h2>Create New Project</h2>
+                <form id="new-project-form" class="new-project-form">
+                    <div class="form-group">
+                        <label for="project-name">Project Name:</label>
+                        <input type="text" id="project-name" name="name" required placeholder="Enter project name">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Create Project</button>
+                </form>
+            </section>
+
+            <!-- Projects List Section -->
+            <section class="projects-section">
+                <h2>Projects</h2>
+                <div id="loading" class="loading" style="display: none;">Loading projects...</div>
+                <div id="error-message" class="error-message" style="display: none;"></div>
+                <div id="projects-list" class="projects-list">
+                    <!-- Projects will be loaded here dynamically -->
+                </div>
+                <div id="no-projects" class="no-projects" style="display: none;">
+                    <p>No projects found. Create your first project above!</p>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="dashboard.js"></script>
+</body>
+</html>
